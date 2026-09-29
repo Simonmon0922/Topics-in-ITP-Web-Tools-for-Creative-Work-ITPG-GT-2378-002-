@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Circle Sequencer</title>
+
+  <!-- p5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.min.js"></script>
+
+  <!-- p5.sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/addons/p5.sound.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.12.80/Tone.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    #controls {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background: rgba(0,0,0,0.6);
+      color: #eee;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+    #controls label {
+      display: block;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="controls">
+    <label>Small tempo <input type="range" id="smallTempo" min="0" max="7" value="2" step="1"></label>
+    <label>Medium tempo <input type="range" id="mediumTempo" min="0" max="7" value="4" step="1"></label>
+    <label>Large tempo <input type="range" id="largeTempo" min="0" max="7" value="6" step="1"></label>
+    <label><input type="checkbox" id="smallOn"> Small</label>
+    <label><input type="checkbox" id="mediumOn" checked> Medium</label>
+    <label><input type="checkbox" id="largeOn"> Large</label>
+    <button id="recordButton">● Record</button>
+  </div>
+
+  <script src="sketch.js"></script>
+  <script src="tool.js"></script>
+</body>
+</html>
