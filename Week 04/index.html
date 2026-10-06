@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Circle Sequencer</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/addons/p5.sound.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.12.80/Tone.min.js"></script>
+
+  <style>
+    :root {
+      --panel-bg: rgba(255,255,255,0.06);
+      --panel-border: #4a4a4a;
+      --ink: #eee;
+      --accent: #d8502f;
+    }
+    body {
+      margin: 0;
+      background: #000;
+      color: var(--ink);
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #app {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    #controls {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 0 0 200px;
+    }
+    .panel {
+      border: 1px solid var(--panel-border);
+      background: var(--panel-bg);
+      border-radius: 4px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .panel h3 {
+      margin: 0 0 2px 0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #999;
+    }
+    .panel label { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; }
+    #recordButton {
+      border: 1px solid var(--panel-border);
+      background: rgba(255,255,255,0.08);
+      color: var(--ink);
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #recordButton:hover { border-color: var(--accent); color: var(--accent); }
+    #canvas-wrap {
+      flex: 1 1 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    @media (max-width: 700px) {
+      #app { flex-direction: column; height: auto; overflow: auto; }
+      #controls { flex: none; flex-direction: row; flex-wrap: wrap; }
+      .panel { flex: 1 1 140px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="controls">
+      <section class="panel">
+        <h3>Tempo</h3>
+        <label>Small <input type="range" id="smallTempo" min="0" max="7" value="2" step="1"></label>
+        <label>Medium <input type="range" id="mediumTempo" min="0" max="7" value="4" step="1"></label>
+        <label>Large <input type="range" id="largeTempo" min="0" max="7" value="6" step="1"></label>
+      </section>
+      <section class="panel">
+        <h3>Enable</h3>
+        <label><input type="checkbox" id="smallOn"> Small</label>
+        <label><input type="checkbox" id="mediumOn" checked> Medium</label>
+        <label><input type="checkbox" id="largeOn"> Large</label>
+      </section>
+      <section class="panel">
+        <h3>Record</h3>
+        <button id="recordButton">● Record</button>
+      </section>
+    </div>
+    <div id="canvas-wrap"></div>
+  </div>
+
+  <script src="sketch.js"></script>
+  <script src="tool.js"></script>
+</body>
+</html>
