@@ -53,6 +53,11 @@
       letter-spacing: 0.05em;
       color: #999;
     }
+    .broider {
+    border-image:  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABUCAYAAAAcaxDBAAADcUlEQVR4Aeyc0W3jQAxEFdeYEtJDakgPKSE9JlggEFaP9o4GlOGfOUC4pWY4S78YxCEfd9te/Of9++t3ftxx5t5xdvuv9r8c6NUf6NV5AXrxTyBAnw107KHVo+5nL/3Ufz4+3+ZH+anPvePMfPqVrvyqP99QEmzWAdoEyPYAJZFmLYGOvTQ/aofM3nHmfOPd/FBn/uwdZ+rsH575cXXmz1njzDzWEigbUq8JBOiaj60GqI1s3VCAjj0xP3d2yuHfjdTX120b/aznu8fZ1el35xl3zg/zZm2cmV+A0pDaIxCgHi/pDlCJyDNIoGNPzI+7UzjOnHXvrPKVzkzez5p+lc9+1hIoG1KvCQTomo+tBqiNbN1QgHKHsJ07h7rqVzrz6af+7Pvd/AKUAak9AgHq8ZLuAJWIPEMBqnaUin/Qv7dR547cjf8H+v9f73+xX/mVvgc/OKj+AvRBTl6fJBCgJ0GdtQXoWVInfQUodxJzujrz1E6in7Xb351f9RegHDi1RyBAPV7SHaASkWe4cSe4O4nXsZ/59D+75v2cz72f/czPN9QlKvwBKgC5coC6xIT/xp1AP3cE/dTZTz/1RX2JpO7n/PRT51D05xtKQs06QJsA2R6gJNKsC1DuDO4IV2/Od3m7O7/6/BywAKUhtUcgQD1e0h2gEpFnKEDVznB1b5znu9351c7lxAUoDak9AgHq8ZLuAJWIPEP5fSjb3Z3Dfu4g6hfXJU7df/Xnyze0/Ah6LwK0x690B2hB0ntRfh+qdo66jv3cUar/ap33cz73PvYzP99Ql6jwB6gA5MoB6hIT/gKUO4H9XZ153EnUVe32d+dX/QWo+gDR1wQCdM3HVgPURrZuKEDdncR41U9d7ST6eR/7lf+OzshlrfoL0GVaREkgQCUizxCgHi/pLkC5k5igdojqVzrz6afO+eh39W5+AcoBUnsEAtTjJd0BKhF5BgmUO4U7irq6nn7WKl/pzHPnUfkqTwJVAdGPBAL0yKNdBWgb4TGgAOUOUjuF+jG+VvSz7t7PvDrB8Q39J+/f/+/9Y9q2FaA0pPYIBKjHS7oDVCLyDBKo2im8jn5Xd3eam6/mU/fzPtYSKBtSrwkE6JqPrQaojWzdUIByh7Bex22b8lN3dxrvZz/z6Ve68qv+ApSBqT0CAerxku4AlYg8wx8AAAD///zfJF8AAAAGSURBVAMAdoK0w5hDo3YAAAAASUVORK5CYII=") 28 /  28px / 0 round;
+    border-width:  28px;
+    border-style:  solid;
+}
     .panel label { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; }
     #recordButton {
       border: 1px solid var(--panel-border);
@@ -82,7 +87,7 @@
 <body>
   <div id="app">
     <div id="controls">
-      <section class="panel">
+      <section class="panel broider">
         <h3>Tempo</h3>
         <label>Small <input type="range" id="smallTempo" min="0" max="7" value="2" step="1"></label>
         <label>Medium <input type="range" id="mediumTempo" min="0" max="7" value="4" step="1"></label>

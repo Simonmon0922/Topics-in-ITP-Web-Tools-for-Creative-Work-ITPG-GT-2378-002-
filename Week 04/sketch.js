@@ -30,6 +30,23 @@ let padSynth, kick, hihat;
 let bgmSmallMedium, bgmMediumLarge, bgmLargeSmall, bgmTriple;
 let intersectState, currentBGM;
 
+let ghostTrails = []; // {x, y, r, alpha}
+
+function spawnGhost(x, y, r = 14) {
+  ghostTrails.push({ x, y, r, alpha: 160 });
+}
+
+function updateAndDrawGhosts() {
+  noStroke();
+  for (let i = ghostTrails.length - 1; i >= 0; i--) {
+    let g = ghostTrails[i];
+    fill(255, 255, 255, g.alpha);
+    ellipse(g.x, g.y, g.r * 2);
+    g.alpha -= 10; // higher = shorter trail; tune to taste
+    if (g.alpha <= 0) ghostTrails.splice(i, 1);
+  }
+}
+
 // beats levels
 const TEMPO_STEPS = [80, 120, 180, 250, 350, 450, 600, 750];
 const SMALL_TEMPO_STEPS = [80, 150, 250, 400, 600, 900, 1300, 1800];
@@ -76,6 +93,24 @@ function preload() {
   };
 }
 
+// function drawNeonRing(x, y, diameter, active) {
+//   noFill();
+//   if (!active) {
+//     stroke(255);
+//     strokeWeight(2);
+//     ellipse(x, y, diameter);
+//     return;
+//   }
+//   colorMode(HSB, 360, 100, 100, 255);
+//   let hue = (millis() / 5) % 360;
+//   for (let i = 3; i >= 0; i--) {
+//     stroke(hue, 100, 100, 255 / (i + 1));  // outer layers = dimmer
+//     strokeWeight(2 + i * 4);               // outer layers = thicker/softer
+//     ellipse(x, y, diameter);               // each pass IS a ring
+//   }
+//   colorMode(RGB, 255);
+// }
+
 function setup() {
   let c = createCanvas(1000, 1080);
   c.parent('canvas-wrap');   // <-- add this line
@@ -102,6 +137,7 @@ function drawUI() {
   text("A-K Add Notes | ← Cymbal → Drum | Spacebar to Switch Circles | Delete to Delete Notes", width/2, 210);
   text("Current Editing Circle：" + currentCircleId, width/2, 240);
 
+  updateAndDrawGhosts();
   // draw circles
   circles.forEach(c => {
     if (!isEnabled(c.id)) return;
@@ -328,9 +364,14 @@ function handleIntersections() {
     stopAllBGM();
   }
 
-  drawPoints(sm);
-  drawPoints(ml);
-  drawPoints(ls);
+function spawnGhostsFor(points) {
+  points.forEach(p => spawnGhost(p.x, p.y));
+  drawPoints(points);
+}
+
+  spawnGhostsFor(sm);
+spawnGhostsFor(ml);
+spawnGhostsFor(ls);
 }
 
 function playExclusiveBGM(bgm) {
