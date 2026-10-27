@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AniCur — DIY Animated Cursor Editor</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 顶栏：对应草图的 File Name / Save / New File / Tools -->
+  <header id="topbar">
+    <span class="logo">AniCur</span>
+    <input id="project-name" type="text" placeholder="File Name" />
+    <button id="btn-save" title="存到浏览器 localStorage">Save</button>
+    <button id="btn-new">New File</button>
+    <button id="btn-tools" disabled title="后面再做">Tools</button>
+  </header>
+
+  <main id="panels">
+    <!-- Guide 面板 -->
+    <section class="panel" id="panel-guide">
+      <h2>Guide</h2>
+      <ol>
+        <li>左键在画布上画点（PAINT），或取色（PICK）</li>
+        <li>Transp = 擦成透明；Solid = 画当前颜色</li>
+        <li>◀ ▶ 切帧，＋加帧，⧉ 复制当前帧，✕ 删帧</li>
+        <li>Save 存进浏览器；导出 .cur/.ani 功能在后续步骤</li>
+      </ol>
+    </section>
+
+    <!-- Canvas 面板 -->
+    <section class="panel" id="panel-canvas">
+      <h2>Canvas</h2>
+      <div class="canvas-toolbar">
+        <span id="frame-label">Frame 1/1</span>
+        <button id="btn-prev">◀</button>
+        <button id="btn-next">▶</button>
+        <button id="btn-add">＋</button>
+        <button id="btn-dup">⧉</button>
+        <button id="btn-del">✕</button>
+      </div>
+      <canvas id="editor" width="384" height="384"></canvas>
+      <div class="canvas-buttons">
+        <button id="btn-paint" class="active">PAINT ✏️</button>
+        <button id="btn-pick">PICK 💉</button>
+        <button id="btn-transp">Transp</button>
+        <button id="btn-solid" class="active">Solid</button>
+      </div>
+    </section>
+
+    <!-- Colors 面板（v0：固定色板 + hex；色轮以后换上） -->
+    <section class="panel" id="panel-colors">
+      <h2>Colors</h2>
+      <div id="palette"></div>
+      <label>Hex <input id="hex-input" type="text" value="#000000" size="8" /></label>
+      <div id="current-color" title="当前颜色"></div>
+    </section>
+
+    <!-- Onion Skin / 预览面板（v0 占位：播放预览，叠影后续加） -->
+    <section class="panel" id="panel-preview">
+      <h2>Preview</h2>
+      <canvas id="preview" width="128" height="128"></canvas>
+      <label>ms/帧 <input id="frame-ms" type="number" value="120" min="20" step="10" /></label>
+      <button id="btn-play">▶ Loop</button>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]: AniCur
+    - textbox "File Name" [ref=e4]
+    - button "Save" [ref=e5] [cursor=pointer]
+    - button "New File" [ref=e6] [cursor=pointer]
+    - button "Tools" [disabled] [ref=e7]
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - heading "Guide" [level=2] [ref=e10]
+      - list [ref=e11]:
+        - listitem [ref=e12]: 左键在画布上画点（PAINT），或取色（PICK）
+        - listitem [ref=e13]: Transp = 擦成透明；Solid = 画当前颜色
+        - listitem [ref=e14]: ◀ ▶ 切帧，＋加帧，⧉ 复制当前帧，✕ 删帧
+        - listitem [ref=e15]: Save 存进浏览器；导出 .cur/.ani 功能在后续步骤
+    - generic [ref=e16]:
+      - heading "Canvas" [level=2] [ref=e17]
+      - generic [ref=e18]:
+        - generic [ref=e19]: Frame 1/1
+        - button "◀" [ref=e20] [cursor=pointer]
+        - button "▶" [ref=e21] [cursor=pointer]
+        - button "＋" [ref=e22] [cursor=pointer]
+        - button "⧉" [ref=e23] [cursor=pointer]
+        - button "✕" [ref=e24] [cursor=pointer]
+      - generic [ref=e26]:
+        - button "PAINT ✏️" [ref=e27] [cursor=pointer]
+        - button "PICK 💉" [ref=e28] [cursor=pointer]
+        - button "Transp" [ref=e29] [cursor=pointer]
+        - button "Solid" [ref=e30] [cursor=pointer]
+    - generic [ref=e31]:
+      - heading "Colors" [level=2] [ref=e32]
+      - generic [ref=e33]:
+        - generic "#000000" [ref=e34] [cursor=pointer]
+        - generic "#7f7f7f" [ref=e35] [cursor=pointer]
+        - generic "#ffffff" [ref=e36] [cursor=pointer]
+        - generic "#ff0000" [ref=e37] [cursor=pointer]
+        - generic "#ff7f00" [ref=e38] [cursor=pointer]
+        - generic "#ffff00" [ref=e39] [cursor=pointer]
+        - generic "#00ff00" [ref=e40] [cursor=pointer]
+        - generic "#00ffff" [ref=e41] [cursor=pointer]
+        - generic "#0000ff" [ref=e42] [cursor=pointer]
+        - generic "#7f00ff" [ref=e43] [cursor=pointer]
+        - generic "#ff00ff" [ref=e44] [cursor=pointer]
+        - generic "#804000" [ref=e45] [cursor=pointer]
+        - generic "#ffc0cb" [ref=e46] [cursor=pointer]
+        - generic "#90ee90" [ref=e47] [cursor=pointer]
+        - generic "#add8e6" [ref=e48] [cursor=pointer]
+        - generic "#ffd700" [ref=e49] [cursor=pointer]
+      - generic [ref=e50]:
+        - text: Hex
+        - textbox "Hex" [ref=e51]: "#000000"
+      - generic "当前颜色" [ref=e52]
+    - generic [ref=e53]:
+      - heading "Preview" [level=2] [ref=e54]
+      - generic [ref=e56]:
+        - text: ms/帧
+        - spinbutton "ms/帧" [ref=e57]: "120"
+      - button "▶ Loop" [ref=e58] [cursor=pointer]
