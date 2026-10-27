@@ -13,7 +13,7 @@ class AppState extends EventTarget {
     this.activeFrame = 0;
     this.currentColor = [0, 0, 0, 255]; // RGBA
     this.usedColors = [];   // recent colors: last painted first, max 8
-    this.tool = "paint";    // "paint" | "pick" | "hotspot"
+    this.tool = "paint";    // "paint" | "pick" | "hotspot" | "select"
     this.solid = true;      // true = paint current color, false = erase (Transp)
     this.hotspot = [0, 0];  // cursor hotspot (click point), written into .cur exports
     this.msPerFrame = 120;  // per-frame duration in ms: shared by preview playback and .ani export
@@ -110,6 +110,26 @@ class AppState extends EventTarget {
     const i = (y * SIZE + x) * 4;
     const p = this.pixels;
     return [p[i], p[i + 1], p[i + 2], p[i + 3]];
+  }
+
+  /** Stamp a copied block with its top-left at (dx, dy), clipped at the edges.
+   *  Transparent pixels in the block are skipped (stamp semantics), so pasting
+   *  a region with transparent background can't erase artwork underneath. */
+  blit(dx, dy, { w, h, pixels }) {
+    this.checkpoint(); // one paste = one undo step
+    const p = this.pixels;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const tx = dx + x, ty = dy + y;
+        if (tx < 0 || ty < 0 || tx >= SIZE || ty >= SIZE) continue;
+        const s = (y * w + x) * 4;
+        if (pixels[s + 3] === 0) continue;
+        const t = (ty * SIZE + tx) * 4;
+        p[t] = pixels[s]; p[t + 1] = pixels[s + 1];
+        p[t + 2] = pixels[s + 2]; p[t + 3] = pixels[s + 3];
+      }
+    }
+    this.#emit("pixels");
   }
 
   // ---- frames ----

@@ -34,6 +34,11 @@
         <li>The red cross is the hotspot (the click point). Click the HOTSPOT ✛
             button to enter hotspot mode, then click/drag on the canvas to move it;
             switch back to PAINT so you can't nudge it by accident</li>
+        <li>SELECT ⬚: drag to marquee a region, Copy (Ctrl+C), then Paste
+            (Ctrl+V) and click where the copy's top-left should go — a ghost
+            preview follows the pointer. Works across frames (copy, switch
+            frame, paste); transparent pixels don't overwrite; Esc cancels;
+            one paste = one undo step</li>
         <li>The recent-colors row remembers the last 8 colors you painted with — click to reuse</li>
         <li>↶/↷ or Ctrl+Z / Ctrl+Y: undo, redo (one stroke = one step)</li>
         <li>Import loads a local .cur/.ani (32×32, 32-bit), replacing the
@@ -60,6 +65,9 @@
         <button id="btn-paint" class="active">PAINT ✏️</button>
         <button id="btn-pick">PICK 💉</button>
         <button id="btn-hotspot" title="Activate to drag the red hotspot cross">HOTSPOT ✛</button>
+        <button id="btn-select" title="Drag to select a region of the canvas">SELECT ⬚</button>
+        <button id="btn-copy" title="Copy the selected region (Ctrl+C)" disabled>Copy</button>
+        <button id="btn-paste" title="Paste: click on the canvas to place the copy (Ctrl+V)" disabled>Paste</button>
         <button id="btn-transp">Transp</button>
         <button id="btn-solid" class="active">Solid</button>
       </div>

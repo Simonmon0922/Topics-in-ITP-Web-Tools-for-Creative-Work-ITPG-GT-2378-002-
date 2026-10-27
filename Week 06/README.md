@@ -1,4 +1,4 @@
-# AniCur — DIY Animated Cursor Editor (v0.5)
+# AniCur — DIY Animated Cursor Editor (v0.6)
 
 Draw pixel cursors and multi-frame animations in the browser, export real
 Windows `.cur` / `.ani` files. Pure static page: no framework, no build step —
@@ -18,7 +18,7 @@ Note you can't just double-click index.html — browsers block ES modules on `fi
 | File | Responsibility |
 |---|---|
 | `js/state.js` | **Single source of truth**: frames, active frame, color, tool, hotspot, undo/redo stacks. Panels only read/write it and subscribe to its events |
-| `js/canvas-panel.js` | Pixel canvas: rendering (checkerboard → next-frame onion skin → current frame → grid → hotspot cross), paint/pick, hotspot drag in HOTSPOT mode |
+| `js/canvas-panel.js` | Pixel canvas: rendering (checkerboard → next-frame onion skin → current frame → grid → hotspot cross → selection marquee / paste ghost), paint/pick, hotspot drag in HOTSPOT mode, region select / copy / paste in SELECT mode |
 | `js/frames.js` | Frame navigation: ◀ ▶ ＋ ⧉ ✕ |
 | `js/colors-panel.js` | Color wheel (angle=hue, radius=saturation, slider=lightness) + 16 presets + recent colors (last 8) + hex |
 | `js/preview-panel.js` | Loop playback preview; writes ms/frame into shared state (the .ani export uses it too) |
@@ -49,7 +49,10 @@ state and listen for its events.
 - [x] Recent colors: auto-remembers the last 8 painted colors (deduped, newest first), click to reuse, saved with the project
 - [x] Undo/redo: ↶↷ buttons + Ctrl+Z / Ctrl+Y (one stroke / frame op = one step, up to 50)
 - [x] Import local .cur/.ani: supports 32×32, 32bpp, uncompressed (what this tool exports, and most modern cursor files); anything else gets a clear error
-- [ ] Region select & copy on the canvas
+- [x] Region select & copy on the canvas: SELECT ⬚ marquee, Copy/Paste buttons
+      + Ctrl+C/V, click places the copy (ghost preview), clipboard survives
+      frame switches, transparent pixels don't overwrite (stamp semantics),
+      Esc cancels, one paste = one undo step
 - [ ] Onion-skin previous-frame option / toggle, more Guide content
 
 ## Installing a .cur / .ani to verify
