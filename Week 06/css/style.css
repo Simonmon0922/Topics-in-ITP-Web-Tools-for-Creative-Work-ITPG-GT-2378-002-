@@ -16,6 +16,7 @@ body {
 }
 #topbar .logo { font-weight: 800; font-size: 20px; }
 #project-name { flex: 1; max-width: 420px; padding: 4px 8px; }
+#btn-lang { margin-left: auto; } /* pin the language toggle to the top-right corner */
 
 #panels {
   display: flex;

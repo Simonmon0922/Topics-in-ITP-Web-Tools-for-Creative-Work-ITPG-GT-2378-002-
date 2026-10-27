@@ -1,4 +1,4 @@
-# AniCur — DIY Animated Cursor Editor (v0.6)
+# AniCur — DIY Animated Cursor Editor (v0.7)
 
 Draw pixel cursors and multi-frame animations in the browser, export real
 Windows `.cur` / `.ani` files. Pure static page: no framework, no build step —
@@ -27,6 +27,7 @@ Note you can't just double-click index.html — browsers block ES modules on `fi
 | `js/decoder/cur.js` | `.cur` bytes → pixels + hotspot (inverse of the encoder; clear errors outside the supported range) |
 | `js/decoder/ani.js` | `.ani` bytes → frames + hotspot + frame rate (walks the RIFF, hands each frame to decoder/cur.js) |
 | `js/panel-drag.js` | Panel drag reordering (hold a title to drag; order kept in localStorage; pure layout, never touches state) |
+| `js/i18n.js` | UI string dictionary (English/Chinese) + `t(lang, key)` lookup; the current language lives in state (`state.lang`, "lang" event) |
 | `js/main.js` | Startup; top bar Save/undo-redo/Import/Export/New; Ctrl+Z/Y shortcuts |
 
 **Iron rule: panel modules never import each other.** To communicate, write to
@@ -53,6 +54,10 @@ state and listen for its events.
       + Ctrl+C/V, click places the copy (ghost preview), clipboard survives
       frame switches, transparent pixels don't overwrite (stamp semantics),
       Esc cancels, one paste = one undo step
+- [x] Language toggle (top-right 中文/EN button): all UI text, Guide, tooltips
+      and dialogs switch between English and Chinese; the choice is an app
+      preference saved in its own localStorage key, independent of projects.
+      Decoder error messages stay English (technical strings, like the code)
 - [ ] Onion-skin previous-frame option / toggle, more Guide content
 
 ## Installing a .cur / .ani to verify

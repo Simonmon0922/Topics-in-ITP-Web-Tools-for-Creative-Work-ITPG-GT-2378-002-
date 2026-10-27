@@ -1,5 +1,6 @@
 // preview-panel.js — animation preview: loops through all frames at ms/frame.
 import { state, SIZE } from "./state.js";
+import { t } from "./i18n.js";
 
 const canvas = document.getElementById("preview");
 const ctx = canvas.getContext("2d");
@@ -38,9 +39,12 @@ export function initPreviewPanel() {
   msInput.value = state.msPerFrame;
   msInput.addEventListener("change", () => state.setMsPerFrame(Number(msInput.value)));
   state.addEventListener("timing", () => { msInput.value = state.msPerFrame; });
+  const syncBtn = () => { btn.textContent = t(state.lang, playing ? "stop" : "loop"); };
+  state.addEventListener("lang", syncBtn);
+  syncBtn();
   btn.addEventListener("click", () => {
     playing = !playing;
-    btn.textContent = playing ? "⏸ Stop" : "▶ Loop";
+    syncBtn();
     if (playing) {
       frameIndex = state.activeFrame;
       lastSwitch = performance.now();

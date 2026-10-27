@@ -18,6 +18,9 @@ class AppState extends EventTarget {
     this.hotspot = [0, 0];  // cursor hotspot (click point), written into .cur exports
     this.msPerFrame = 120;  // per-frame duration in ms: shared by preview playback and .ani export
     this.projectName = "";
+    // UI language ("en" | "zh") — an app preference, not project data: it has
+    // its own localStorage key and is never part of project save/undo.
+    this.lang = localStorage.getItem("anicur-lang") || "en";
     // Undo/redo: stacks of "before" snapshots. One drag stroke = one snapshot
     // (panels call checkpoint() at stroke start); one-shot ops like add/dup/
     // delete frame, import and New checkpoint inside their own methods.
@@ -186,6 +189,12 @@ class AppState extends EventTarget {
     if (this.usedColors[0] && same(this.usedColors[0])) return;
     this.usedColors = [[...c], ...this.usedColors.filter((u) => !same(u))].slice(0, 8);
     this.#emit("used");
+  }
+
+  setLang(lang) {
+    this.lang = lang;
+    localStorage.setItem("anicur-lang", lang);
+    this.#emit("lang");
   }
 
   setMsPerFrame(ms) {

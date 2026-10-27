@@ -1,0 +1,135 @@
+// i18n.js — UI string dictionary, English + Chinese.
+// Pure data + one lookup helper; it holds no state of its own. The current
+// language lives in state.js (state.lang, "lang" event) like every other
+// piece of shared state. Decoder error messages are intentionally not here:
+// they are technical strings and stay English, like the code itself.
+export const STRINGS = {
+  en: {
+    fileName: "File Name",
+    save: "Save",
+    saveTitle: "Save to browser localStorage",
+    undoTitle: "Undo (Ctrl+Z)",
+    redoTitle: "Redo (Ctrl+Y)",
+    import: "Import",
+    importTitle: "Import a local .cur / .ani (replaces the current project)",
+    exportCur: "Export .cur",
+    exportCurTitle: "Export the current frame as a .cur file",
+    exportAni: "Export .ani",
+    exportAniTitle: "Export all frames as a .ani animated cursor",
+    newFile: "New File",
+    tools: "Tools",
+    toolsTitle: "Coming later",
+    langBtn: "中文", // shows the language the button switches TO
+
+    guideTitle: "Guide",
+    guide1: "Left-click on the canvas to paint (PAINT) or pick a color (PICK)",
+    guide2: "Transp = erase to transparent; Solid = paint the current color",
+    guide3: "◀ ▶ switch frames, ＋ add, ⧉ duplicate current frame, ✕ delete",
+    guide4: "The translucent pixels on the canvas are the next frame's onion skin",
+    guide5: "The red cross is the hotspot (the click point). Click the HOTSPOT ✛ button to enter hotspot mode, then click/drag on the canvas to move it; switch back to PAINT so you can't nudge it by accident",
+    guide6: "SELECT ⬚: drag to marquee a region, Copy (Ctrl+C), then Paste (Ctrl+V) and click where the copy's top-left should go — a ghost preview follows the pointer. Works across frames (copy, switch frame, paste); transparent pixels don't overwrite; Esc cancels; one paste = one undo step",
+    guide7: "The recent-colors row remembers the last 8 colors you painted with — click to reuse",
+    guide8: "↶/↷ or Ctrl+Z / Ctrl+Y: undo, redo (one stroke = one step)",
+    guide9: "Import loads a local .cur/.ani (32×32, 32-bit), replacing the current project — undoable",
+    guide10: "Export .cur saves the current frame; Export .ani saves all frames as an animation at the Preview panel's ms/frame rate (both include the hotspot)",
+    guide11: "Hold a panel's title to drag it left/right and reorder the panels",
+
+    canvasTitle: "Canvas",
+    frameLabel: "Frame {i}/{n}",
+    paint: "PAINT ✏️",
+    pick: "PICK 💉",
+    hotspot: "HOTSPOT ✛",
+    hotspotTitle: "Activate to drag the red hotspot cross",
+    select: "SELECT ⬚",
+    selectTitle: "Drag to select a region of the canvas",
+    copy: "Copy",
+    copyTitle: "Copy the selected region (Ctrl+C)",
+    paste: "Paste",
+    pasteTitle: "Paste: click on the canvas to place the copy (Ctrl+V)",
+    transp: "Transp",
+    solid: "Solid",
+
+    colorsTitle: "Colors",
+    wheelTitle: "Click/drag to pick hue & saturation",
+    lightness: "Lightness ",
+    recentColors: "Recent colors (last 8 painted)",
+    hex: "Hex ",
+    currentColorTitle: "Current color",
+
+    previewTitle: "Preview",
+    msFrame: "ms/frame ",
+    loop: "▶ Loop",
+    stop: "⏸ Stop",
+
+    savedAlert: "Saved to browser localStorage",
+    importFailed: "Import failed: ",
+    confirmNew: "Clear the current project? (Unsaved changes will be lost)",
+  },
+
+  zh: {
+    fileName: "文件名",
+    save: "保存",
+    saveTitle: "保存到浏览器 localStorage",
+    undoTitle: "撤销（Ctrl+Z）",
+    redoTitle: "重做（Ctrl+Y）",
+    import: "导入",
+    importTitle: "导入本地 .cur / .ani 文件（会替换当前项目）",
+    exportCur: "导出 .cur",
+    exportCurTitle: "把当前帧导出为 .cur 文件",
+    exportAni: "导出 .ani",
+    exportAniTitle: "把所有帧导出为 .ani 动画光标",
+    newFile: "新建",
+    tools: "工具",
+    toolsTitle: "以后再做",
+    langBtn: "EN",
+
+    guideTitle: "指南",
+    guide1: "在画布上左键：画笔（PAINT）画画，取色（PICK）吸色",
+    guide2: "透明 = 擦成透明；实色 = 画当前颜色",
+    guide3: "◀ ▶ 切换帧，＋ 新增，⧉ 复制当前帧，✕ 删除",
+    guide4: "画布上半透明的像素是下一帧的洋葱皮叠影",
+    guide5: "红十字是热点（点击判定点）。点「热点 ✛」按钮进入热点模式后，在画布上点/拖就能移动它；改回画笔模式就不会误碰",
+    guide6: "选区 ⬚：在画布上拖出虚线框，复制（Ctrl+C），再粘贴（Ctrl+V）并点击目标位置（复制块左上角落在那格）——半透明预览会跟着指针。可跨帧使用（复制后切帧再粘贴）；透明像素不会覆盖已画内容；Esc 取消；一次粘贴 = 一步撤销",
+    guide7: "最近用色一栏自动记住最近画过的 8 个颜色——点击即可复用",
+    guide8: "↶/↷ 或 Ctrl+Z / Ctrl+Y：撤销、重做（一笔 = 一步）",
+    guide9: "导入会载入本地 .cur/.ani（32×32、32 位色）并替换当前项目——可撤销",
+    guide10: "导出 .cur 保存当前帧；导出 .ani 按预览面板的「毫秒/帧」把所有帧存成动画（两者都带热点）",
+    guide11: "按住面板标题左右拖动，可以调整面板顺序",
+
+    canvasTitle: "画布",
+    frameLabel: "第 {i}/{n} 帧",
+    paint: "画笔 ✏️",
+    pick: "取色 💉",
+    hotspot: "热点 ✛",
+    hotspotTitle: "激活后可拖动红色热点十字",
+    select: "选区 ⬚",
+    selectTitle: "拖动框选画布上的一块区域",
+    copy: "复制",
+    copyTitle: "复制选中的区域（Ctrl+C）",
+    paste: "粘贴",
+    pasteTitle: "粘贴：在画布上点击放置位置（Ctrl+V）",
+    transp: "透明",
+    solid: "实色",
+
+    colorsTitle: "颜色",
+    wheelTitle: "点击/拖动选择色相和饱和度",
+    lightness: "明度 ",
+    recentColors: "最近用色（最近画过的 8 个）",
+    hex: "Hex ",
+    currentColorTitle: "当前颜色",
+
+    previewTitle: "预览",
+    msFrame: "毫秒/帧 ",
+    loop: "▶ 循环",
+    stop: "⏸ 停止",
+
+    savedAlert: "已保存到浏览器 localStorage",
+    importFailed: "导入失败：",
+    confirmNew: "清空当前项目？（未保存的修改会丢失）",
+  },
+};
+
+/** Look up a UI string for the given language; falls back to English. */
+export function t(lang, key) {
+  return STRINGS[lang]?.[key] ?? STRINGS.en[key] ?? key;
+}

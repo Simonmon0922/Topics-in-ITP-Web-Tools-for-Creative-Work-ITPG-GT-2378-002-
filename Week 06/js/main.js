@@ -10,6 +10,28 @@ import { encodeCur } from "./encoder/cur.js";
 import { encodeAni } from "./encoder/ani.js";
 import { decodeCur } from "./decoder/cur.js";
 import { decodeAni } from "./decoder/ani.js";
+import { t } from "./i18n.js";
+
+// ---- language toggle ----
+// Static text carries data-i18n (textContent) / data-i18n-title /
+// data-i18n-placeholder attributes; dynamic strings (frame label, Loop/Stop,
+// alerts) are translated at the point of use via t(state.lang, key).
+function applyI18n() {
+  const lang = state.lang;
+  document.documentElement.lang = lang === "zh" ? "zh" : "en";
+  for (const el of document.querySelectorAll("[data-i18n]"))
+    el.textContent = t(lang, el.dataset.i18n);
+  for (const el of document.querySelectorAll("[data-i18n-title]"))
+    el.title = t(lang, el.dataset.i18nTitle);
+  for (const el of document.querySelectorAll("[data-i18n-placeholder]"))
+    el.placeholder = t(lang, el.dataset.i18nPlaceholder);
+  document.getElementById("btn-lang").textContent = t(lang, "langBtn");
+}
+
+document.getElementById("btn-lang").addEventListener("click", () => {
+  state.setLang(state.lang === "zh" ? "en" : "zh");
+});
+state.addEventListener("lang", applyI18n);
 
 // ---- top bar ----
 const nameInput = document.getElementById("project-name");
@@ -20,7 +42,7 @@ nameInput.addEventListener("change", () => {
 
 document.getElementById("btn-save").addEventListener("click", () => {
   state.save();
-  alert("Saved to browser localStorage");
+  alert(t(state.lang, "savedAlert"));
 });
 
 // ---- undo / redo ----
@@ -62,7 +84,8 @@ fileInput.addEventListener("change", async () => {
     state.projectName = file.name.replace(/\.(cur|ani|ico)$/i, "");
     nameInput.value = state.projectName;
   } catch (err) {
-    alert(`Import failed: ${err.message}`);
+    // err.message stays English (technical, matches the code); only the prefix translates
+    alert(t(state.lang, "importFailed") + err.message);
   }
 });
 
@@ -86,7 +109,7 @@ document.getElementById("btn-export-ani").addEventListener("click", () => {
 });
 
 document.getElementById("btn-new").addEventListener("click", () => {
-  if (confirm("Clear the current project? (Unsaved changes will be lost)")) {
+  if (confirm(t(state.lang, "confirmNew"))) {
     state.reset();
     nameInput.value = "";
   }
@@ -103,3 +126,5 @@ initPanelDrag();
 if (state.load()) {
   nameInput.value = state.projectName;
 }
+
+applyI18n(); // after panel init, so the saved language applies to everything
