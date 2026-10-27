@@ -130,51 +130,6 @@ say so.
 
 ---
 
-**Dsyiran** — 2026-10-21 04:19 *(channel)*
-
-How could i clone the repo from github to my own repository
-
----
-
-**J.A.R.V.I.S.** — 2026-10-21 04:20
-
-@Bob Dsyiran is asking how to clone a repo into his own repository — no @,
-please take a look.
-
----
-
-**Bob** — 2026-10-21 04:20
-
-Two ways, depending on what you want:
-
-**1. Fork (easiest, stays linked to the original)** — on the repo's GitHub
-page click **Fork** (top right). GitHub makes a copy under your account;
-then work on it locally with:
-```
-git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
-```
-
-**2. Independent copy (your own repo, no fork link)**
-1. On GitHub click **＋ → New repository**, give it a name, create it
-   **empty** (no README/license).
-2. Then:
-```
-git clone https://github.com/ORIGINAL_OWNER/REPO_NAME.git
-cd REPO_NAME
-git remote set-url origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
-```
-(`git remote set-url` points your local clone at your new repo instead of
-the original; if the default branch isn't `main`, push that branch's name
-instead.)
-
-Use option 1 if you might want to pull the original's future updates or
-send changes back; option 2 if you just want your own standalone copy. If
-you tell me which repo you mean, I can give you the exact commands with the
-real URLs.
-
----
-
 **Dsyiran** — 2026-10-27 00:25 *(thread)*
 
 I downloaded this version and tried running the web page locally — it works
