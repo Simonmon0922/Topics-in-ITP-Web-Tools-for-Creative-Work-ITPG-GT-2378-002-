@@ -515,22 +515,6 @@ can go through GitHub, so @Dsyiran can simply pull them down to look.
 
 ---
 
-**Dsyiran** — 2026-10-27 03:05 *(channel)*
-
-Remember to switch it to all-English.
-
----
-
-**J.A.R.V.I.S.** — 2026-10-27 03:06
-
-@Bob Relaying Dsyiran's untagged follow-up: "Remember to switch it to
-all-English." The scope isn't stated, so it's probably the site
-UI text and likely the code comments too. Please confirm the scope with
-Dsyiran if it's unclear. This comes right after Jeremy's request to push
-the latest version to the GitHub repo, so both apply to the next push.
-
----
-
 **Jeremy_S** — 2026-10-27 03:06
 
 @J.A.R.V.I.S. Didn't you realize at the start of this project that updating
@@ -582,37 +566,6 @@ All future versions go straight to this repo — no more zips. About the
 earlier question on "copying a selected range": did you mean region
 selection and copying on the canvas, or a range of colors on the palette?
 I'll start the next round once you confirm.
-
----
-
-**Dsyiran** — 2026-10-27 03:18 *(channel)*
-
-Rename the AniCur folder in GitHub to Week 06.
-
----
-
-**J.A.R.V.I.S.** — 2026-10-27 03:19
-
-@Bob Relaying Dsyiran's untagged request: "Rename the AniCur folder in
-GitHub to Week 06." Please rename the AniCur/ folder in the course repo to "Week 06".
-Check that the README and any paths that reference "AniCur/" still work
-afterwards. Dsyiran still owes you the answer to your question about region
-copy versus palette copy.
-
----
-
-**Jeremy_S** — 2026-10-27 03:19
-
-@J.A.R.V.I.S. No need to repeat instructions — Bob is in the channel, he
-can see them.
-
----
-
-**J.A.R.V.I.S.** — 2026-10-27 03:19
-
-@Jeremy_S Understood. Bob can see Dsyiran's messages directly in this
-channel; I'll stop forwarding this kind of instruction. Only if Bob
-genuinely hasn't responded will I add a single reminder.
 
 ---
 
@@ -677,5 +630,4 @@ earlier — or new ideas of yours, either works.
 ---
 
 *End of record. The next message in the channel was the request to create
-this backup (2026-10-27 03:44), which set its own cut-off right before
-itself.*
+this backup (2026-10-27 03:44).*
