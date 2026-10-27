@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AniCur — DIY Animated Cursor Editor</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Top bar: matches the sketch's File Name / Save / New File / Tools -->
+  <header id="topbar">
+    <span class="logo">AniCur</span>
+    <input id="project-name" type="text" placeholder="File Name" />
+    <button id="btn-save" title="Save to browser localStorage">Save</button>
+    <button id="btn-undo" title="Undo (Ctrl+Z)" disabled>↶</button>
+    <button id="btn-redo" title="Redo (Ctrl+Y)" disabled>↷</button>
+    <button id="btn-import" title="Import a local .cur / .ani (replaces the current project)">Import</button>
+    <input id="import-file" type="file" accept=".cur,.ani" hidden />
+    <button id="btn-export" title="Export the current frame as a .cur file">Export .cur</button>
+    <button id="btn-export-ani" title="Export all frames as a .ani animated cursor">Export .ani</button>
+    <button id="btn-new">New File</button>
+    <button id="btn-tools" disabled title="Coming later">Tools</button>
+  </header>
+
+  <main id="panels">
+    <!-- Guide panel -->
+    <section class="panel" id="panel-guide">
+      <h2>Guide</h2>
+      <ol>
+        <li>Left-click on the canvas to paint (PAINT) or pick a color (PICK)</li>
+        <li>Transp = erase to transparent; Solid = paint the current color</li>
+        <li>◀ ▶ switch frames, ＋ add, ⧉ duplicate current frame, ✕ delete</li>
+        <li>The translucent pixels on the canvas are the next frame's onion skin</li>
+        <li>The red cross is the hotspot (the click point). Click the HOTSPOT ✛
+            button to enter hotspot mode, then click/drag on the canvas to move it;
+            switch back to PAINT so you can't nudge it by accident</li>
+        <li>The recent-colors row remembers the last 8 colors you painted with — click to reuse</li>
+        <li>↶/↷ or Ctrl+Z / Ctrl+Y: undo, redo (one stroke = one step)</li>
+        <li>Import loads a local .cur/.ani (32×32, 32-bit), replacing the
+            current project — undoable</li>
+        <li>Export .cur saves the current frame; Export .ani saves all frames
+            as an animation at the Preview panel's ms/frame rate (both include the hotspot)</li>
+        <li>Hold a panel's title to drag it left/right and reorder the panels</li>
+      </ol>
+    </section>
+
+    <!-- Canvas panel -->
+    <section class="panel" id="panel-canvas">
+      <h2>Canvas</h2>
+      <div class="canvas-toolbar">
+        <span id="frame-label">Frame 1/1</span>
+        <button id="btn-prev">◀</button>
+        <button id="btn-next">▶</button>
+        <button id="btn-add">＋</button>
+        <button id="btn-dup">⧉</button>
+        <button id="btn-del">✕</button>
+      </div>
+      <canvas id="editor" width="384" height="384"></canvas>
+      <div class="canvas-buttons">
+        <button id="btn-paint" class="active">PAINT ✏️</button>
+        <button id="btn-pick">PICK 💉</button>
+        <button id="btn-hotspot" title="Activate to drag the red hotspot cross">HOTSPOT ✛</button>
+        <button id="btn-transp">Transp</button>
+        <button id="btn-solid" class="active">Solid</button>
+      </div>
+    </section>
+
+    <!-- Colors panel: wheel + lightness slider + presets + recent colors + hex -->
+    <section class="panel" id="panel-colors">
+      <h2>Colors</h2>
+      <canvas id="wheel" width="140" height="140" title="Click/drag to pick hue & saturation"></canvas>
+      <label id="lightness-row">Lightness <input id="lightness" type="range" min="0" max="100" value="50" /></label>
+      <div id="palette"></div>
+      <label class="section-label">Recent colors (last 8 painted)</label>
+      <div id="temp-palette"></div>
+      <label>Hex <input id="hex-input" type="text" value="#000000" size="8" /></label>
+      <div id="current-color" title="Current color"></div>
+    </section>
+
+    <!-- Preview panel -->
+    <section class="panel" id="panel-preview">
+      <h2>Preview</h2>
+      <canvas id="preview" width="128" height="128"></canvas>
+      <label>ms/frame <input id="frame-ms" type="number" value="120" min="20" step="10" /></label>
+      <button id="btn-play">▶ Loop</button>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

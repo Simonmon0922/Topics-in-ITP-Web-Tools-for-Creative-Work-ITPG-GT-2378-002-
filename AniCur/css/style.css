@@ -1,0 +1,103 @@
+/* AniCur — layout clarity first, polish later */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background: #e8e8e8;
+}
+
+#topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border-bottom: 2px solid #000;
+}
+#topbar .logo { font-weight: 800; font-size: 20px; }
+#project-name { flex: 1; max-width: 420px; padding: 4px 8px; }
+
+#panels {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  flex-wrap: wrap;
+}
+.panel {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 8px 12px 12px;
+}
+.panel h2 { margin: 0 0 8px; font-size: 15px; }
+.panel h2.drag-handle { cursor: grab; user-select: none; touch-action: none; }
+.panel.dragging { opacity: 0.6; outline: 2px dashed #000; }
+.panel.dragging h2.drag-handle { cursor: grabbing; }
+
+#panel-guide { width: 240px; font-size: 13px; }
+#panel-guide ol { padding-left: 18px; margin: 0; }
+#panel-guide li { margin-bottom: 6px; }
+
+.canvas-toolbar { display: flex; gap: 4px; align-items: center; margin-bottom: 6px; }
+#frame-label { font-size: 13px; margin-right: 6px; min-width: 80px; }
+#editor {
+  /* 32×32 logical pixels × 12 = 384; image-rendering keeps hard edges */
+  image-rendering: pixelated;
+  border: 1px solid #888;
+  cursor: crosshair;
+  touch-action: none; /* required for Pointer Events: blocks scroll gestures on the canvas */
+}
+.canvas-buttons { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+button { padding: 4px 10px; cursor: pointer; }
+button.active { background: #000; color: #fff; }
+button:disabled { opacity: 0.4; cursor: default; }
+
+#wheel { display: block; margin: 0 auto 6px; cursor: crosshair; touch-action: none; }
+#lightness-row { font-size: 13px; display: block; margin-bottom: 8px; }
+#lightness { vertical-align: middle; width: 100px; }
+#palette {
+  display: grid;
+  grid-template-columns: repeat(8, 22px);
+  gap: 3px;
+  margin-bottom: 8px;
+}
+#palette .swatch {
+  width: 22px; height: 22px;
+  border: 1px solid #666;
+  cursor: pointer;
+}
+.section-label { font-size: 12px; display: block; margin-bottom: 4px; }
+#temp-palette {
+  display: grid;
+  grid-template-columns: repeat(8, 22px);
+  gap: 3px;
+  margin-bottom: 8px;
+}
+#temp-palette .swatch {
+  width: 22px; height: 22px;
+  border: 1px solid #666;
+  cursor: pointer;
+}
+#temp-palette .swatch.empty {
+  border: 1px solid #000; /* empty slot = black-bordered blank box */
+  background: #fff;
+  cursor: default;
+}
+#current-color {
+  width: 100%; height: 24px;
+  border: 1px solid #000;
+  margin-top: 8px;
+  background: #000;
+}
+
+#panel-preview #preview {
+  image-rendering: pixelated;
+  border: 1px solid #888;
+  /* checkerboard shows transparency */
+  background: repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 16px 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+#panel-preview label { font-size: 13px; display: block; margin-bottom: 6px; }
